@@ -17,6 +17,13 @@
         public decimal Teto { get; set; }
 
         public decimal Aliquota { get; set; }
+
+        public bool ContemValor(decimal valor)
+        {
+            if (valor > Teto)
+                return true;
+            return valor >= Piso;
+        }
     }
 
     public class Inss

@@ -18,5 +18,17 @@ namespace FIapFolhaPagamento.Teste
 
             Assert.Equal(105.9m, desconto); 
         }
+
+        [Fact]  
+
+        public void Deveria_Aplicar_Faixa_2()
+        {
+            const decimal salario = 2100.00m;
+            const decimal descontoEsperado = 167.82m;
+            var inss = new Inss();
+
+            var desconto = inss.CalcularDesconto(salario);
+            Assert.Equal(descontoEsperado, desconto);
+        }
     }
 }
