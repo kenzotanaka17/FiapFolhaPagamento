@@ -1,4 +1,6 @@
-﻿namespace FiapFolhaPagamento
+﻿using System.Reflection.Metadata.Ecma335;
+
+namespace FiapFolhaPagamento
 {
     internal class Program
     {
@@ -24,6 +26,18 @@
                 return true;
             return valor >= Piso;
         }
+
+        public decimal ObtemValorFaixa(decimal salario)
+        { 
+            var valorFaixaAnterior = Aliquota > 7.5m ? Piso - 0.01m : Piso;
+
+            //if (salario > Teto)
+            // return Teto - valorFaixaAnterior;
+            //return salario - valorFaixaAnterior;
+            return salario > Teto ?
+                Teto - valorFaixaAnterior :
+                salario - valorFaixaAnterior;
+        }
     }
 
     public class Inss
@@ -46,7 +60,7 @@
             decimal desconto = 0m;
             foreach (var item in Faixas)
             {
-                if (salarioBruto >= item.Piso && salarioBruto <= item.Teto)
+                if (item.ContemValor(salarioBruto))
                 {
                     desconto = salarioBruto * item.Aliquota / 100;
                     return desconto;
