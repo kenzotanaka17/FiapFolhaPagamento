@@ -10,6 +10,14 @@ namespace FIapFolhaPagamento.Teste
     public class INSSFaixaTeste
     {
 
+        public static IEnumerable<object[]> DadosValorFaixa =>
+            new List<object[]>
+            {
+                new object[](0, 1412.00m, 7.5m, 1412m),
+                new object[]()
+            };
+
+
         [Fact]
 
         public void INSS_Faixa_Deve_Conter_Valor()
